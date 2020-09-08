@@ -1,0 +1,46 @@
+import java.util.*;
+import java.math.BigInteger;
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int o = sc.nextInt();
+		double can=sc.nextDouble();
+		double[][] all=new double[o][3];
+		for(int i=0;i<o;i++) {
+			double a=sc.nextDouble(),b=sc.nextDouble();
+			all[i][0]=a;
+			all[i][1]=b;
+			all[i][2]=b/a;
+		}
+		sort(all,o);
+		double ok = 0;
+		for(int i=0;i<o;i++) {
+			if((can-all[i][0])>=0) {
+				can-=all[i][0];
+				ok+=all[i][1];
+			}else {
+				break;
+			}
+		}
+		System.out.println(ok);
+	}
+	public static void sort(double[][] x,int n) {
+		for(int i=0;i<n;i++) {
+			for(int j=0;j<n-1;j++) {
+				if(x[j][2]<x[j+1][2]) {
+					double temp = x[j][2];
+					x[j][2] = x[j+1][2];
+					x[j+1][2] = temp;
+					
+					temp = x[j][1];
+					x[j][1] = x[j+1][1];
+					x[j+1][1] = temp;
+					
+					temp = x[j][0];
+					x[j][0] = x[j+1][0];
+					x[j+1][0] = temp;
+				}
+			}
+		}
+	}
+}
